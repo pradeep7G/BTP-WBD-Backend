@@ -4,7 +4,6 @@ const mongoose = require("mongoose")
 const dotenv = require("dotenv")
 const multer = require("multer")
 const upload = multer({ dest: "./uploads/" })
-const PORT = 4000
 dotenv.config()
 const userRoute = require("./routes/user")
 const authRoute = require("./routes/auth")
