@@ -34,12 +34,12 @@ const NewProduct = () => {
     data.append("image", fileData)
 
     axios
-      .post("http://localhost:5000/uploadFile", data)
+      .post("/uploadFile", data)
       .then((result) => {
         console.log("successfull: ", result)
         setProduct({
           ...product,
-          img: `http://localhost:5000/uploads/${result.data.filename}`
+          img: `/uploads/${result.data.filename}`
         })
       })
       .catch((err) => console.log(err))
