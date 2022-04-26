@@ -78,7 +78,7 @@ export const addToCart = async (dispatch, { updatedProduct, cart, user }) => {
     const total = cart.total + updatedProduct.price * updatedProduct.quantity
     try {
       await axios.put(
-        `http://localhost:5000/api/carts/${user.currentUser._id}`,
+        `/api/carts/${user.currentUser._id}`,
         {
           products: [...cartProducts, updatedProduct],
           quantity: quantity,
@@ -97,7 +97,7 @@ export const addToCart = async (dispatch, { updatedProduct, cart, user }) => {
       updatedProduct.price * updatedProduct.quantity
     try {
       await axios.put(
-        `http://localhost:5000/api/carts/${user.currentUser._id}`,
+        `/api/carts/${user.currentUser._id}`,
         {
           products: [...filteredProducts, updatedProduct],
           quantity: quantity,
@@ -117,7 +117,7 @@ export const setCartState = async (dispatch, user) => {
   }
   try {
     const response = await axios.get(
-      `http://localhost:5000/api/carts/find/${user.currentUser._id}`,
+      `/api/carts/find/${user.currentUser._id}`,
       { headers }
     )
     const products = response.data.products
@@ -132,7 +132,7 @@ export const setCustomCartState = async (dispatch, { user, modifiedCart }) => {
   }
   try {
     const response = await axios.put(
-      `http://localhost:5000/api/carts/${user.currentUser._id}`,
+      `/api/carts/${user.currentUser._id}`,
       modifiedCart,
       { headers }
     )
@@ -148,7 +148,7 @@ export const emptyCart = async (dispatch, user) => {
     token: `Bearer ${user.currentUser.accessToken}`
   }
   await axios.put(
-    `http://localhost:5000/api/carts/${user.currentUser._id}`,
+    `/api/carts/${user.currentUser._id}`,
     {
       products: [],
       quantity: 0,
@@ -166,7 +166,7 @@ export const getOrders = async (user) => {
   console.log("user: ", user)
   try {
     const response = await axios.get(
-      `http://localhost:5000/api/orders/find/${user.currentUser._id}`,
+      `/api/orders/find/${user.currentUser._id}`,
       {
         headers
       }
@@ -193,7 +193,7 @@ export const deleteProduct = async (id, dispatch, user) => {
     token: `Bearer ${user.currentUser.accessToken}`
   }
   try {
-    await axios.delete(`http://localhost:5000/api/products/${id}`, {
+    await axios.delete(`/api/products/${id}`, {
       headers
     })
     dispatch(deleteProductSuccess(id))
@@ -209,7 +209,7 @@ export const updateProduct = async (id, product, dispatch, user) => {
   }
   try {
     const res = await axios.put(
-      `http://localhost:5000/api/products/${id}`,
+      `/api/products/${id}`,
       product,
       { headers }
     )
@@ -226,7 +226,7 @@ export const addProduct = async (dispatch, user, product) => {
   dispatch(addProductStart())
   try {
     const res = await axios.post(
-      `http://localhost:5000/api/products`,
+      `/api/products`,
       product,
       { headers }
     )
@@ -242,7 +242,7 @@ export const getUsers = async (dispatch, user) => {
     token: `Bearer ${user.currentUser.accessToken}`
   }
   try {
-    const res = await axios.get(`http://localhost:5000/api/users`, {
+    const res = await axios.get(`/api/users`, {
       headers
     })
     dispatch(getUsersSuccess(res.data))
@@ -258,7 +258,7 @@ export const deleteUser = async (id, dispatch, user) => {
     token: `Bearer ${user.currentUser.accessToken}`
   }
   try {
-    await axios.delete(`http://localhost:5000/api/users/${id}`, {
+    await axios.delete(`/api/users/${id}`, {
       headers
     })
     dispatch(deleteUserSuccess(id))
@@ -274,7 +274,7 @@ export const updateUser = async (id, user, dispatch, adminUser) => {
     token: `Bearer ${adminUser.currentUser.accessToken}`
   }
   try {
-    await axios.put(`http://localhost:5000/api/users/${id}`, user, { headers })
+    await axios.put(`/api/users/${id}`, user, { headers })
     dispatch(updateUserSuccess({ id, user }))
   } catch (err) {
     console.log(err)
@@ -287,7 +287,7 @@ export const addUser = async (dispatch, user, product) => {
   }
   dispatch(addUserStart())
   try {
-    const res = await axios.post(`http://localhost:5000/api/users`, product, {
+    const res = await axios.post(`/api/users`, product, {
       headers
     })
     dispatch(addUserSuccess(res.data))
