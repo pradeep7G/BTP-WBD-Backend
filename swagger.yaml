@@ -1,0 +1,473 @@
+swagger: "2.0"
+info:
+  description: "AirShop Swagger Server for documentation of REST APIs."
+  version: "1.0.0"
+  title: "AirShop"
+tags:
+  - name: "Auth"
+    description: "Everything about Authorization"
+  - name: "User"
+    description: "Everything about User Details"
+  - name: "Product"
+    description: "Everything about Products details"
+  - name: "Cart"
+    description: "Everything about Cart details"
+  - name: "Order"
+    description: "Everything about Orders details"
+
+securityDefinitions:
+    Bearer:
+        type: apiKey
+        description: "Value: Bearer "
+        name: token
+        in: header
+
+security:
+  - Bearer: []
+
+paths:
+  # AUTH ROUTES
+  /api/auth/register:
+    post:
+      tags:
+        - "Auth"
+      summary: "Add a new user to the database"
+      description: "User registration"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "User object that needs to be added to the DB"
+          required: true
+          schema:
+            $ref: "#/definitions/RegisterUser"
+      responses:
+        "201":
+          description: "Successfully created the user"
+        "500":
+          description: "Error creating the user"
+  /api/auth/login:
+    post:
+      tags:
+        - "Auth"
+      summary: "Logs user into the system"
+      description: "Login the user"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "User object that is fetched from DB"
+          required: true
+          schema:
+            $ref: "#/definitions/LoginUser"
+      responses:
+        "200":
+          description: "Successfully logged the user"
+        "500":
+          description: "Error logging the user"
+        "401":
+          description: "Wrong Credentials!"
+
+  # USER ROUTES
+  /api/users:
+    get:
+      tags:
+        - "User"
+      summary: "Get all user details"
+      description: "Get All users"
+      # operationId: "getUserByName"
+      produces:
+        - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Successful operation, returns list of all users"
+          schema:
+            $ref: "#/definitions/RegisterUser"
+        "500":
+          description: "Error performing the operation"
+  /api/users/find/{userID}:
+    get:
+      tags:
+        - "User"
+      summary: "Get user details by userID"
+      description: "Get the user details by UserID"
+      # operationId: "getUserByName"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "userID"
+          in: "path"
+          description: "The user deatils that needs to be fetched by userID "
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/RegisterUser"
+        "400":
+          description: "Invalid userID supplied"
+        "404":
+          description: "User not found"
+        "500":
+          description: "Error performing the operation"
+  /api/users/{userID}:
+    put:
+      tags:
+        - "User"
+      summary: "Update an existing user"
+      description: ""
+      operationId: "updateUser"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "userID"
+          in: "path"
+          description: "The userID of the user that needs to be deleted"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "User object that needs to be updated to the store"
+          required: true
+          schema:
+            $ref: "#/definitions/UpdateUser"
+      responses:
+        "200":
+          description: "Successful Operation"
+        "400":
+          description: "Invalid UserID supplied"
+        "404":
+          description: "User not found"
+        "405":
+          description: "Validation exception"
+        "500":
+          description: "Not Authenticated"
+    delete:
+      tags:
+        - "User"
+      summary: "Delete the user by userID "
+      description: "This can only be done by the logged in user."
+      operationId: "deleteUser"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "userID"
+          in: "path"
+          description: "The userID of the user that needs to be deleted"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "Deleted user Successfully"
+        "400":
+          description: "Invalid userID supplied"
+        "404":
+          description: "User not found"
+        "500":
+          description: "Error performing the operation"
+  # PRODUCT ROUTES
+  /api/products:
+    get:
+      tags:
+        - "Product"
+      summary: "Get all products details"
+      description: "Get All Products"
+      # operationId: "getUserByName"
+      produces:
+        - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Successful operation, returns list of all users"
+          # schema:
+          #   $ref: "#/definitions/RegisterUser"
+        "500":
+          description: "Error performing the operation"
+    post:
+      tags:
+        - "Product"
+      summary: "Create a Product"
+      description: "Create a Product"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "product object that needs to be added to the store"
+          required: true
+          schema:
+            $ref: "#/definitions/Product"
+      responses:
+        "200":
+          description: "Successful added the product to the store"
+          schema:
+            $ref: "#/definitions/Product"
+        "500":
+          description: "Error performing the operation"
+  /api/products/find/{productID}:
+    get:
+      tags:
+        - "Product"
+      summary: "Get product details by productID"
+      description: "Get product details by productID"
+      # operationId: "getUserByName"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "productID"
+          in: "path"
+          description: "The product deatils that needs to be fetched by productID "
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Product"
+        "400":
+          description: "Invalid userID supplied"
+        "404":
+          description: "User not found"
+        "500":
+          description: "Error performing the operation"
+  /api/products/{productID}:
+    put:
+      tags:
+        - "Product"
+      summary: "Update an existing product"
+      description: ""
+      operationId: "updateProduct"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "productID"
+          in: "path"
+          description: "The productID of the user that needs to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "product object that needs to be updated to the store"
+          required: true
+          schema:
+            $ref: "#/definitions/Product"
+      responses:
+        "200":
+          description: "Successful Operation"
+        "400":
+          description: "Invalid UserID supplied"
+        "404":
+          description: "User not found"
+        "405":
+          description: "Validation exception"
+        "500":
+          description: "Not Authenticated"
+    delete:
+      tags:
+        - "Product"
+      summary: "Delete the product by productID "
+      description: "This can only be done by the logged in admin."
+      operationId: "deleteProduct"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "productID"
+          in: "path"
+          description: "The productID of the user that needs to be deleted"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "Deleted product  Successfully"
+        "400":
+          description: "Invalid product ID supplied"
+        "404":
+          description: "product  not found"
+        "500":
+          description: "Error performing the operation"
+  
+definitions:
+  LoginUser:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+        required:
+          - "true"
+      password:
+        type: "string"
+        required:
+          - "true"
+    xml:
+      name: "LoginUser"
+  RegisterUser:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+        required:
+          - "true"
+      fullname:
+        type: "string"
+      phonenumber:
+        type: "string"
+        required:
+          - "true"
+      address:
+        type: "string"
+      email:
+        type: "string"
+        required:
+          - "true"
+      password:
+        type: "string"
+        required:
+          - "true"
+      isAdmin:
+        type: "boolean"
+        default: "false"
+    xml:
+      name: "RegisterUser"
+  UpdateUser:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+      fullname:
+        type: "string"
+      phonenumber:
+        type: "string"
+      address:
+        type: "string"
+      email:
+        type: "string"
+      isAdmin:
+        type: "boolean"
+        default: "false"
+    xml:
+      name: "RegisterUser"
+  Product:
+    type: "object"
+    properties:
+      title:
+        type: "string"
+        required:
+          - "true"
+      desc:
+        type: "string"
+        required:
+          - "true"
+      img:
+        type: "string"
+        required:
+          - "true"
+      categories:
+        type: "array"
+        items: 
+          type: "string"
+      color:
+        type: "array"
+        items: 
+          type: "string"
+      size:
+        type: "array"
+        items: 
+          type: "string"
+      price:
+        type: "number"
+        format: "int64"
+      inStock: 
+        type: "boolean"
+        default: true
+    xml:
+      name: "Product"
+  CartItem:
+    allOf:
+      - $ref: "#/definitions/Product"
+        type: "object"
+        properties:
+          id:
+            type: "integer"
+            format: "int64"
+          quantity:
+            type: "number"
+            format: "int32"
+            required:
+              - "true"
+          total:
+            type: "number"
+            format: "int32"
+            required:
+              - "true"
+        xml:
+          name: "CartItem"
+  Order:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      products:
+        type: "string"
+        format: "int32"
+      quantity:
+        type: "string"
+        format: "int32"
+      amount:
+        type: "number"
+        format: "int64"
+      address:
+        type: "string"
+        format: "int32"
+      status:
+        type: "string"
+        description: "Order Status"
+        enum:
+          - "placed"
+          - "approved"
+          - "delivered"
+    xml:
+      name: "Order"
+  Product:
+    type: "object"
+    properties:
+      title:
+        type: "string"
+        format: "int32"
+        required:
+          - "true"
+      desc:
+        type: "string"
+        format: "int32"
+      img:
+        type: "string"
+        format: "int32"
+      price:
+        type: "number"
+        format: "int64"
+      quantity:
+        type: "number"
+        format: "int64"
+        default: 1
+      inStock:
+        type: "boolean"
+        default: true
+    xml:
+      name: "Product"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"

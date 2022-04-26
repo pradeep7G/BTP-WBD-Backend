@@ -1,0 +1,373 @@
+swagger: "2.0"
+info:
+  description: "This is Green Grocery Swagger Server for documentation of REST APIs."
+  version: "1.0.0"
+  title: "Green Grocery"
+tags:
+- name: "Auth"
+  description: "Everything about Authorization"
+- name: "User"
+  description: "Everything about User Details"
+- name: "Contact"
+  description: "Everything about Contact Details"
+
+
+paths:
+
+# AUTH ROUTES
+  /api/auth/register:
+    post:
+      tags:
+      - "Auth"
+      summary: "Add a new user to the database"
+      description: "Register a user"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "User object that needs to be added to the DB"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "201":
+          description: "Successfully created the user"
+        "500":
+          description: "Error creating the user"
+  /api/auth/login:
+    post:
+      tags:
+      - "Auth"
+      summary: "Logs user into the system"
+      description: "Login the user"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "User object that is fetched from DB"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: "Successfully logged the user"
+        "500":
+          description: "Error logging the user"  
+        "401": 
+          description: "Wrong Credentials!"
+
+# USER ROUTES           
+  /api/users:
+    get:
+      tags:
+      - "User"
+      summary: "Get all user details"
+      description: "Get All users"
+      # operationId: "getUserByName"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        "500":
+          description: "Error performing the operation"
+  /api/users/find/{userID}:
+    get:
+      tags:
+      - "User"
+      summary: "Get user details by userID"
+      description: "Get the user details by UserID"
+      # operationId: "getUserByName"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "userID"
+        in: "path"
+        description: "The user deatils that needs to be fetched by userID "
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        "400":
+          description: "Invalid userID supplied"
+        "404":
+          description: "User not found"
+        "500":
+          description: "Error performing the operation"
+  /api/users/{userID}:
+    put:
+      tags:
+      - "User"
+      summary: "Update an existing user"
+      description: ""
+      operationId: "updateUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "userID"
+        in: "path"
+        description: "The userID of the user that needs to be deleted"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "User object that needs to be updated to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: "Successful Operation"
+        "400":
+          description: "Invalid UserID supplied"
+        "404":
+          description: "User not found"
+        "405":
+          description: "Validation exception"
+        "500":
+          description: "Not Authenticated"
+    delete:
+      tags:
+      - "User"
+      summary: "Delete the user by userID "
+      description: "This can only be done by the logged in user."
+      operationId: "deleteUser"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "userID"
+        in: "path"
+        description: "The userID of the user that needs to be deleted"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Deleted user Successfully"
+        "400":
+          description: "Invalid userID supplied"
+        "404":
+          description: "User not found"
+        "500":
+          description: "Error performing the operation"
+  /api/users/stats:  
+    get:
+      tags:
+      - "User"
+      summary: "Get all user statistics"
+      description: "Get All user statistics"
+      # operationId: "getUserByName"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        "500":
+          description: "Invalid Operation" 
+
+# CONTACT ROUTES
+  /api/contact:
+    get:
+      tags:
+      - "Contact"
+      summary: "Get all contact details"
+      description: "Get All contacts"
+      # operationId: "getUserByName"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Contact"
+        "500":
+          description: "Error performing the operation"
+  /api/contact/find/{contactID}:
+    get:
+      tags:
+      - "Contact"
+      summary: "Get contact details by contactID"
+      description: "Get the contact details by contactID"
+      # operationId: "getUserByName"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "contactID"
+        in: "path"
+        description: "The contact details that needs to be fetched by contactID "
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Contact"
+        "400":
+          description: "Invalid contactID supplied"
+        "404":
+          description: "Contact not found"
+        "500":
+          description: "Error performing the operation"
+  /api/contact/{contactID}:
+    put:
+      tags:
+      - "Contact"
+      summary: "Update an existing contact details"
+      description: ""
+      # operationId: "updateUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "contactID"
+        in: "path"
+        description: "The contactID of the contact that needs to be updated"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Contact object that needs to be updated"
+        required: true
+        schema:
+          $ref: "#/definitions/Contact"
+      responses:
+        "200":
+          description: "Successful Operation"
+        "400":
+          description: "Invalid contactID supplied"
+        "404":
+          description: "Contact not found"
+        "405":
+          description: "Validation exception"
+        "500":
+          description: "Not Authenticated"
+    delete:
+      tags:
+      - "Contact"
+      summary: "Delete the contact by contactID "
+      description: "This can only be done by the logged in user."
+      operationId: "deleteUser"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "contactID"
+        in: "path"
+        description: "The contactID of the user that needs to be deleted"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Deleted contact Successfully"
+        "400":
+          description: "Invalid contactID supplied"
+        "404":
+          description: "User not found"
+        "500":
+          description: "Error performing the operation"                 
+definitions:
+  User:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+      email:
+        type: "string"
+      password:
+        type: "string"
+    xml:
+      name: "User"
+  Cart:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      products: 
+        type: "string"
+        format: "int32"
+      quantity:
+        type: "string"
+        format: "int32"
+    xml:
+      name: "User"    
+  Order:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      products: 
+        type: "string"
+        format: "int32"
+      quantity:
+        type: "string"
+        format: "int32"
+      amount:
+        type: "number"
+        format: "int64"
+      address:
+        type: "string"
+        format: "int32"
+      status:
+        type: "string"
+        description: "Order Status"
+        enum:
+        - "placed"
+        - "approved"
+        - "delivered"
+    xml:
+      name: "Order"
+  Product:
+    type: "object"
+    properties:
+      title: 
+        type: "string"
+        format: "int32"
+        required:
+          - "true"
+      desc:
+        type: "string"
+        format: "int32"
+      img:
+        type: "string"
+        format: "int32"
+      price:
+        type: "number"
+        format: "int64"
+      inStock:
+        type: "boolean"
+        default: true
+    xml:
+      name: "Product"
+  Contact:
+    type: "object"
+    properties:
+      username: 
+        type: "string"
+        format: "int32"
+      email:
+        type: "string"
+        format: "int32"
+      message:
+        type: "string"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"

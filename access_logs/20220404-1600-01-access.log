@@ -1,0 +1,1 @@
+::1 - - [04/Apr/2022:10:26:54 +0000] "POST /api/auth/login HTTP/1.1" 200 479 "http://localhost:5000/api-docs/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36"

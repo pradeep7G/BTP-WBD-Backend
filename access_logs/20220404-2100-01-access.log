@@ -1,0 +1,8 @@
+::1 - - [04/Apr/2022:15:05:59 +0000] "GET /api/products HTTP/1.1" 200 15289 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36"
+::1 - - [04/Apr/2022:15:06:03 +0000] "GET /api/users HTTP/1.1" 200 2341 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36"
+::1 - - [04/Apr/2022:15:06:09 +0000] "GET /api/products HTTP/1.1" 200 15289 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36"
+::1 - - [04/Apr/2022:15:07:16 +0000] "GET /api/products HTTP/1.1" 200 15289 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36"
+::1 - - [04/Apr/2022:15:26:56 +0000] "GET /api/products HTTP/1.1" 200 15289 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36"
+::1 - - [04/Apr/2022:15:26:58 +0000] "GET /api/users HTTP/1.1" 200 2341 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36"
+::1 - - [04/Apr/2022:15:27:29 +0000] "GET /api/products HTTP/1.1" 200 15289 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36"
+::1 - - [04/Apr/2022:15:27:30 +0000] "GET /api/users HTTP/1.1" 200 2341 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36"
