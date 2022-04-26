@@ -54,6 +54,7 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions)
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
+app.use(express.static("build"))
 app.use(cors())
 app.use(morgan("combined", { stream: accessLogStream }))
 app.use(express.json())
@@ -65,7 +66,7 @@ app.use("/api/orders", orderRoute)
 app.use("/api/checkout", stripeRoute)
 app.use(express.static(`./uploads`))
 
-app.use('/uploads',express.static(__dirname+"/uploads"))
+app.use("/uploads", express.static(__dirname + "/uploads"))
 
 app.post("/uploadFile", upload.single("image"), (req, res) => {
   let fileType = req.file.mimetype.split("/")[1]
