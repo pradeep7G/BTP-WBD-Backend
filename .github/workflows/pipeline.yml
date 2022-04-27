@@ -25,9 +25,9 @@ jobs:
         with:
           node-version: "12.x"
       - name: npm install api
-        run: npm install && cd client && npm install
+        run: npm install 
       - name: npm install client
-        run: cd client && npm install
+        run: cd client && npm install && cd ../
       - name: build
         run: npm run build:client
       - name: test
