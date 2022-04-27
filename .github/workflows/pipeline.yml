@@ -11,22 +11,21 @@ on:
 jobs:
   deployment_pipeline:
     runs-on: ubuntu-18.04
-    env: 
-      SKIP_PREFLIGHT_CHECK: true
-      MONGO_URI: ${{ secrets.MONGODB_URI }} 
+    env:
+      MONGO_URI: ${{ secrets.MONGODB_URI }}
       TEST_MONGO_URI: ${{secrets.TEST_MONGODB_URI}}
       PASS_SEC: ${{secrets.PASS_SEC}}
       JWT_SEC: ${{secrets.JWT_SEC}}
       STRIPE_KEY: ${{secrets.STRIPT_KEY}}
-      REACT_APP_STRIPE : ${{secrets.REACT_APP_STRIPE}}
-      SKIP_PREFLIGHT_CHECK : ${{secrets.SKIP_PREFLIGHT_CHECK}}
+      REACT_APP_STRIPE: ${{secrets.REACT_APP_STRIPE}}
+      SKIP_PREFLIGHT_CHECK: ${{secrets.SKIP_PREFLIGHT_CHECK}}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: "12.x"
       - name: npm install api
-        run: npm install 
+        run: npm install
       - name: npm install client
         run: cd client && npm install
       - name: build
@@ -44,14 +43,14 @@ jobs:
         uses: akhileshns/heroku-deploy@v3.8.8
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "fullstack-open-part11-bloglist" 
+          heroku_app_name: "fullstack-open-part11-bloglist"
           heroku_email: "l0ve2cr3ate@gmail.com"
           procfile: "web: npm start"
           healthcheck: "https://fullstack-open-part11-bloglist.herokuapp.com/health"
           checkstring: "ok"
           rollbackonhealthcheckfailed: true
         env:
-          HD_MONGO_URI: ${{ secrets.MONGO_URI }} 
+          HD_MONGO_URI: ${{ secrets.MONGO_URI }}
           HD_SECRET: ${{secrets.SECRET}}
           HD_SKIP_PREFLIGHT_CHECK: true
       - uses: actions/checkout@v2
@@ -78,12 +77,12 @@ jobs:
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if:  ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') && success() }}
+        if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') && success() }}
       - name: send slack failure notification
         uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
           fields: all
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} 
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') && failure() }}
