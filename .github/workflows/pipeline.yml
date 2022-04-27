@@ -24,8 +24,10 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: "12.x"
-      - name: npm install
+      - name: npm install api
         run: npm install && cd client && npm install
+      - name: npm install client
+        run: cd client && npm install
       - name: build
         run: npm run build:client
       - name: test
