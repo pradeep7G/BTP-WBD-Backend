@@ -56,7 +56,7 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions)
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
-app.use(express.static("build"))
+app.use(express.static("./client/build"))
 app.use(cors())
 app.use(morgan("combined", { stream: accessLogStream }))
 app.use(express.json())

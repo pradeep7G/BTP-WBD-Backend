@@ -13,10 +13,12 @@ jobs:
     runs-on: ubuntu-18.04
     env: 
       SKIP_PREFLIGHT_CHECK: true
-      MONGO_URI: ${{ secrets.MONGO_URI }} 
-      TEST_MONGO_URI: ${{secrets.TEST_MONGO_URI}}
-      PORT: ${{secrets.PORT}}
-      SECRET: ${{secrets.SECRET}}
+      MONGO_URI: ${{ secrets.MONGODB_URI }} 
+      TEST_MONGO_URI: ${{secrets.TEST_MONGODB_URI}}
+      PASS_SEC: ${{secrets.PASS_SEC}}
+      JWT_SEC: ${{secrets.JWT_SEC}}
+      STRIPE_KEY: ${{secrets.STRIPT_KEY}}
+      REACT_APP_STRIPE : ${{secrets.REACT_APP_STRIPE}}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -24,8 +26,6 @@ jobs:
           node-version: "12.x"
       - name: npm install
         run: npm install && cd client && npm install
-      - name: lint
-        run: npm run lint:all
       - name: build
         run: npm run build:client
       - name: test
