@@ -27,7 +27,7 @@ jobs:
       - name: npm install api
         run: npm install 
       - name: npm install client
-        run: cd client && npm install && cd ../
+        run: cd client && npm install
       - name: build
         run: npm run build:client
       - name: test
