@@ -19,6 +19,7 @@ jobs:
       JWT_SEC: ${{secrets.JWT_SEC}}
       STRIPE_KEY: ${{secrets.STRIPT_KEY}}
       REACT_APP_STRIPE : ${{secrets.REACT_APP_STRIPE}}
+      SKIP_PREFLIGHT_CHECK : true
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
