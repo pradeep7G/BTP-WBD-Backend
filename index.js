@@ -27,9 +27,11 @@ const swaggerDocument = YAML.load("./swagger.yaml")
 // const upload = require("./middlewares/multer")
 // const cloudinary=require("./cloud uploads/cloudinary")
 const fs = require("fs")
-
+const MONGODB_URI = process.env.NODE_ENV === 'test' 
+  ? process.env.TEST_MONGODB_URI
+  : process.env.MONGODB_URI
 mongoose
-  .connect(process.env.MONGO_URL)
+  .connect(MONGODB_URI)
   .then(() => console.log("DB Connection Successfull!"))
   .catch((err) => {
     console.log(err)
@@ -86,3 +88,5 @@ const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
   console.log(`Backend server is running at ${PORT}`)
 })
+
+module.exports = app
