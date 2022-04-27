@@ -11,7 +11,7 @@
     "build:client": "cd client && npm run build",
     "build": "cd client && npm install && npm run build"
   },
-  "keywords": [],
+  "keywords": ["Ecommerce","Clothes"],
   "author": "",
   "license": "ISC",
   "dependencies": {
