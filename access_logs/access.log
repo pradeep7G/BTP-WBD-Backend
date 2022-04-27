@@ -9,3 +9,5 @@
 ::ffff:127.0.0.1 - - [27/Apr/2022:07:36:32 +0000] "POST /api/auth/login HTTP/1.1" 200 426 "-" "-"
 ::ffff:127.0.0.1 - - [27/Apr/2022:07:37:49 +0000] "POST /api/auth/register HTTP/1.1" 201 495 "-" "-"
 ::ffff:127.0.0.1 - - [27/Apr/2022:07:37:49 +0000] "POST /api/auth/login HTTP/1.1" 200 426 "-" "-"
+::ffff:127.0.0.1 - - [27/Apr/2022:12:32:39 +0000] "POST /api/auth/register HTTP/1.1" 201 495 "-" "-"
+::ffff:127.0.0.1 - - [27/Apr/2022:12:32:39 +0000] "POST /api/auth/login HTTP/1.1" 200 426 "-" "-"
