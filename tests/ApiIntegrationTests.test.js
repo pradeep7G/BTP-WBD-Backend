@@ -5,8 +5,8 @@ const Product = require("../models/Product")
 const User = require("../models/User")
 
 const api = supertest(app)
-jest.setTimeout(10000)
-let AuthToken = null
+jest.setTimeout(10000) 
+let AuthToken = null   
 const initialProducts = [
   {
     title: "Dhingra Men's Regular Fit Bandhgala Jodhpuri Style Blazer",

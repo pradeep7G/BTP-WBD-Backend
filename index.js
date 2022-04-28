@@ -27,9 +27,10 @@ const swaggerDocument = YAML.load("./swagger.yaml")
 // const upload = require("./middlewares/multer")
 // const cloudinary=require("./cloud uploads/cloudinary")
 const fs = require("fs")
-const MONGODB_URI = process.env.NODE_ENV === 'test' 
-  ? process.env.TEST_MONGODB_URI
-  : process.env.MONGODB_URI
+const MONGODB_URI =
+  process.env.NODE_ENV === "test"
+    ? process.env.TEST_MONGODB_URI
+    : process.env.MONGODB_URI
 mongoose
   .connect(MONGODB_URI)
   .then(() => console.log("DB Connection Successfull!"))
@@ -47,7 +48,7 @@ const swaggerOptions = {
       contact: {
         name: "AirShop"
       },
-      servers: ["http://localhost:5000"]
+      servers: ["/"]
     }
   },
   apis: [".routes/*.js"]

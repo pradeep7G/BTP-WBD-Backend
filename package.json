@@ -11,7 +11,10 @@
     "build:client": "cd client && npm run build",
     "build": "cd client && npm install && npm run build"
   },
-  "keywords": ["Ecommerce","Clothes"],
+  "keywords": [
+    "Ecommerce",
+    "Clothes"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -32,7 +35,7 @@
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
-    "jest": "^28.0.1",
+    "jest": "^27.5.1",
     "supertest": "^6.2.3"
   },
   "jest": {
