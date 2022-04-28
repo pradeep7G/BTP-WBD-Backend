@@ -34,7 +34,8 @@ jobs:
         run: npm run test
       - name: deploy to heroku
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
-        uses: akhileshns/heroku-deploy@v3.8.8
+        - uses: actions/checkout@v2
+        - uses: akhileshns/heroku-deploy@v3.12.12 
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "airshopecommerce"
