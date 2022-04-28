@@ -39,7 +39,6 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "airshopecommerce"
           heroku_email: "pradeep7chinna@gmail.com"
-          procfile: "web: npm start"
         env:
           HD_MONGO_URI: ${{ secrets.MONGODB_URI }}
           HD_SECRET: ${{secrets.PASS_SEC}}
