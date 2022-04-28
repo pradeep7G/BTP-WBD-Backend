@@ -38,14 +38,11 @@ jobs:
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "airshopecommerce"
-          heroku_email: "l0ve2cr3ate@gmail.com"
+          heroku_email: "pradeep7chinna@gmail.com"
           procfile: "web: npm start"
-          healthcheck: "https://fullstack-open-part11-bloglist.herokuapp.com/health"
-          checkstring: "ok"
-          rollbackonhealthcheckfailed: true
         env:
-          HD_MONGO_URI: ${{ secrets.MONGO_URI }}
-          HD_SECRET: ${{secrets.SECRET}}
+          HD_MONGO_URI: ${{ secrets.MONGODB_URI }}
+          HD_SECRET: ${{secrets.PASS_SEC}}
           HD_SKIP_PREFLIGHT_CHECK: true
       - uses: actions/checkout@v2
     
