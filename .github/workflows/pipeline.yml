@@ -12,8 +12,8 @@ jobs:
   deployment_pipeline:
     runs-on: ubuntu-18.04
     env:
-      MONGO_URI: ${{ secrets.MONGODB_URI }}
-      TEST_MONGO_URI: ${{secrets.TEST_MONGODB_URI}}
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
+      TEST_MONGODB_URI: ${{secrets.TEST_MONGODB_URI}}
       PASS_SEC: ${{secrets.PASS_SEC}}
       JWT_SEC: ${{secrets.JWT_SEC}}
       STRIPE_KEY: ${{secrets.STRIPT_KEY}}
