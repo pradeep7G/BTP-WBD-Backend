@@ -11,6 +11,7 @@ const productRoute = require("./routes/product")
 const cartRoute = require("./routes/cart")
 const orderRoute = require("./routes/order")
 const stripeRoute = require("./routes/stripe")
+const searchRoute = require("./routes/searchProducts")
 const cors = require("cors")
 
 //Morgan Middleware
@@ -67,6 +68,7 @@ app.use("/api/products", productRoute)
 app.use("/api/carts", cartRoute)
 app.use("/api/orders", orderRoute)
 app.use("/api/checkout", stripeRoute)
+// app.use("/api/search",searchRoute)
 app.use(express.static(`./uploads`))
 
 app.use("/uploads", express.static(__dirname + "/uploads"))
